@@ -36,3 +36,22 @@ A full-stack **Job Portal** web application built with the **MERN stack (MongoDB
 
 ## 📂 Project Structure
 
+job-portal/
+├── backend/
+│ ├── controllers/
+│ ├── models/
+│ ├── routers/
+│ ├── middlewares/
+│ └── index.js
+├── frontend/
+│ ├── src/
+│ │ ├── components/
+│ │ ├── hooks/
+│ │ ├── redux/
+│ │ ├── utils/
+│ │ └── main.jsx
+│ └── public/
+├── README.md
+└── .gitignore
+
+
