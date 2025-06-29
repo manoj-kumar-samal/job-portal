@@ -8,9 +8,9 @@ export const signup = async (req, res) => {
     const { fullname, email, phone, password, role } = req.body;
     try {
 
-        const file=req.file;
-        const fileUri=getDataUri(file);
-        const cloudResponse=await cloudinary.uploader.upload(fileUri.content)
+        const file = req.file;
+        const fileUri = getDataUri(file);
+        const cloudResponse = await cloudinary.uploader.upload(fileUri.content)
 
         const user = await User.findOne({ email });
         if (user) {
@@ -25,8 +25,8 @@ export const signup = async (req, res) => {
             phone,
             password: hashPassword,
             role,
-            profile:{
-                profilePhoto:cloudResponse.secure_url,
+            profile: {
+                profilePhoto: cloudResponse.secure_url,
             }
         })
         res.status(201).json({ message: "Signup successfull", newUser })
@@ -74,17 +74,17 @@ export const login = async (req, res) => {
         return res
             .status(200)
             .cookie("token", token, {
-                maxAge: 86400000,
+                maxAge: 86400000, // 1 day
                 httpOnly: true,
-                sameSite: "lax",  // ✅ LAX allows navigation-based sending
-                secure: false     // ✅ only true in production with HTTPS
+                sameSite: "None",   // ✅ allow cross-origin requests
+                secure: true        // ✅ required for SameSite=None
             })
-
             .json({
                 message: `Welcome back ${user.fullname}`,
                 user,
                 token,
             });
+
     } catch (error) {
         console.log(error);
         return res.status(400).json({ errors: "Error in login", error });
