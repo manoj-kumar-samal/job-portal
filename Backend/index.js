@@ -21,7 +21,7 @@ app.use(cookie());
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "job-portal-xi-kohl.vercel.app"
+  "https://job-portal-xi-kohl.vercel.app"
 ];
 
 app.use(cors({
